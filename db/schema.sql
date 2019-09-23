@@ -1,0 +1,4 @@
+
+DROP DATABASE IF EXISTS preschool;
+
+CREATE DATABASE preschool;
