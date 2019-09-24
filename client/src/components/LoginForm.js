@@ -9,7 +9,7 @@ function LoginForm(props) {
                         <h3>Sign In</h3>
                         <hr />
                         <div className="d-flex justify-content-end social_icon">                                  
-                            <span><i className="fa fa-google-plus-square">Sign In with Google</i></span>                                   
+                            <span><i className="fa fa-google-plus-square">  Sign In with Google</i></span>                                   
                         </div>
                     </div>
                     <div className="card-body">
