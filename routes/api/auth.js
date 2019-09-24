@@ -97,7 +97,8 @@ module.exports = function (app) {
     // @route POST /login
     // @desc logs in a user , return JWT
     app.post("/api/login", (req,res)  =>{
-
+    
+        console.log("req",req.body);
         const {email, password} = req.body;
         //ADD validation here 
 
