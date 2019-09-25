@@ -68,14 +68,14 @@ module.exports = function (app) {
                             .then(user=>{
                                 console.log("user",user);
                                 res.status(200).json({
-                                    message:"user created successfully",
+                                    user:"user created successfully",
                                     userCreated: true
                                 })
                             })
                             .catch(err => {
                                 console.log("db create err",err);
                                 res.status(500).json({
-                                    message: "user created with err " + err
+                                    user: "user created with err " + err
                                 })
                             })
                     })
@@ -86,7 +86,7 @@ module.exports = function (app) {
 
         }).catch( err =>{
             res.status(500).json({
-                "msg":"db read err : "+err
+                "message":"db read err : "+err
             })
 
         })
@@ -108,7 +108,7 @@ module.exports = function (app) {
             if(!user) {
 
                return res.status(404).json({
-                    message:"email not found"
+                    email:"email not found"
                 });
             };
             console.log("password",password);
@@ -147,14 +147,14 @@ module.exports = function (app) {
                     }else{
                       
                         return res.status(400).json({
-                            message:"Incorrect password"
+                            password:"Incorrect password"
                         });
                     }
                 })
                 .catch(err=>{
                     console.log("check password err",err);
                     return res.status(400).json({
-                        message:"check password err "+err
+                        password:"check password err "+err
                     })
                 })
                 
@@ -164,6 +164,18 @@ module.exports = function (app) {
         })
 
     });
+
+//get user info
+   app.get("/api/user",passport.authenticate('jwt',{session:false}),
+        (req,res)=>{
+            db.User.findOne({where: {id:req.user.id}})
+                .then( user => {
+                    if(user){
+                        res.status(200).json(user);
+                    }
+                })
+                .catch(err=> console.log(err));
+   })    
 
 //update user profile, includes last name and first name
     app.put("/api/profile",

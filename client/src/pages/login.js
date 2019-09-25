@@ -1,6 +1,9 @@
 import React,{Component} from 'react';
+import {Redirect} from "react-router-dom";
 import LoginForm from "../components/LoginForm";
 import API from "../utils/API";
+import authenticate from '../utils/Authentication';
+import setAuthToken from '../utils/setAuthtoken';
 
 class Login  extends Component {
 
@@ -9,9 +12,20 @@ class Login  extends Component {
         this.state ={
             email:"",
             password:"",
-            errors:{}
+            errors:{},
+            redirect:false
         };       
     }
+
+    componentDidMount(){
+        const token = localStorage.getItem("preschool-app");
+
+        if(authenticate(token)){
+            this.setState({
+                redirect:true
+            });
+        };
+    };
 
     handleValueChange = (event)=>{
         const {name,value} = event.target;
@@ -23,24 +37,55 @@ class Login  extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
 
-        API.login(this.state.email,this.state.password)
+        const data={
+            email:this.state.email,
+            password:this.state.password
+        }
+       
+
+        API.login(data)
            .then(res=>{
                console.log("res",res);
-               if(res.status===200){
-                   console.log("redirect dashboard");
+               if(res.data.token){
+                  
+                   const {token} = res.data;
+
+                   if(token){
+                       localStorage.setItem("preschool-app",token);
+                       setAuthToken(token);
+
+                       this.setState({
+                        errors:{},
+                        redirect:true
+                        });
+                   }
+                   
+            
                }
+           })
+           .catch((err)=>{
+            console.log("res message",err.response.data);  
+                
+            this.setState({errors:err.response.data});
+            
            })
     }
 
     render(){
+        const {email, password, errors,redirect} = this.state;
+        if (redirect){
+            return <Redirect to="/dashboard" />
+        }
+
         return (
+               
             
                <div className="container">
-                    <LoginForm email={this.state.email} 
-                               password={this.state.password} 
+                    <LoginForm email={email} 
+                               password={password} 
                                handleValueChange ={this.handleValueChange} 
-                               handleSubmit = {this.handleSubmit} />
-                   
+                               handleSubmit = {this.handleSubmit}
+                               errors={errors} />
                 </div>
          
         )  

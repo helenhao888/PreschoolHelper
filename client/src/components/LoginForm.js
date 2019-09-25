@@ -1,4 +1,15 @@
-import React from 'react'
+import React from 'react';
+
+const styles = {
+    
+    errorStyles: {
+    color: "#cc0000",
+    fontSize:"0.8rem",
+    fontWeight: "400",
+    margin:"0",
+    textAlign:"left"
+  }
+};
 
 function LoginForm(props) {
     return (
@@ -20,9 +31,12 @@ function LoginForm(props) {
                                 </div>
                                 <input type="text" className="form-control" placeholder="email" 
                                        name="email" value={props.email}
-                                       onChange={props.handleValueChange} />
+                                       onChange={props.handleValueChange} />                               
 
                             </div>
+                            {props.errors.email && (
+                                        <div style={styles.errorStyles}>{props.errors.email}</div>)
+                                    }
                             <div className="input-group form-group">
                                 <div className="input-group-prepend">
                                     <span className="input-group-text"><i className="fa fa-key"></i></span>
@@ -31,22 +45,24 @@ function LoginForm(props) {
                                        name ="password" value = {props.password} 
                                        onChange={props.handleValueChange} />
                             </div>
-                            {/* <div className="row align-items-center remember">
-                                <input type="checkbox">Remember Me</input>
-                            </div> */}
+                            {props.errors.password && (
+                                        <div style={styles.errorStyles}>{props.errors.password}</div>)
+                                    }
+                           
                             <div className="form-group">
                                 <button type="submit" value="Login" className="btn btn-primary float-right login_btn"
                                         onClick = {props.handleSubmit}>Login </button>
                             </div>
                         </form>
+                                                
+                              
+
                     </div>
+                   
                     <div className="card-footer">
                         <div className="d-flex justify-content-center links">
-                            Don't have an account?<a href="#">Sign Up</a>
-                        </div>
-                        {/* <div className="d-flex justify-content-center">
-                            <a href="#">Forgot your password?</a>
-                        </div> */}
+                            Don't have an account?<a href="/signup">Sign Up</a>
+                        </div>                      
                     </div>
                 </div>
             </div>
