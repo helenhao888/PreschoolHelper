@@ -1,0 +1,20 @@
+.login-page-container{
+    background-image: url('/background.jpg');
+    padding:50px;
+}
+
+.login-page-container h2,.signup-page-container h2{
+    color:darkviolet;
+    font-weight: bold;
+    margin:10px;
+    padding: 20px;
+    float:left;
+}
+.signup-page-container{
+    background-image: url('/background.jpg');
+    padding:50px;
+}
+
+.signup-page-container label{
+    color:white;
+}

@@ -33,12 +33,7 @@ class Dashboard  extends Component {
             .catch(err=> console.log(err));
     };
 
-    // handleLogout = () =>{
-    //     localStorage.removeItem('preschool-app');
-    //     this.setState({
-    //         redirect: true
-    //     });
-    // };
+   
 
     render(){
 

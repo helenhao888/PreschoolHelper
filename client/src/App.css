@@ -56,3 +56,9 @@
   color:purple;
   cursor: pointer;
   }
+
+
+ .login-page-contianer{
+   background-image: url('/background.jpg');
+   background-color:blue;
+ }

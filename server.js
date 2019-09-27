@@ -5,7 +5,7 @@ const keys = require("./config/keys.js");
 require("dotenv").config();
 const express = require("express");
 
-console.log("keys",keys);
+
 // Sets up the Express App
 // =============================================================
 const app = express();

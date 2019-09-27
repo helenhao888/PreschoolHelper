@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import "./style.css";
 
 function SignupForm(props) {
     return (
@@ -15,35 +16,38 @@ function SignupForm(props) {
                     <div className="card-body">
                         <form>
                             <div className="input-group form-group">  
-                                <label for="email" class="col-md-4 control-label">Email</label>                            
+                                <label htmlFor="email" className="col-md-4 control-label">Email</label>                            
                                 <input type="text" className="form-control" placeholder="email" 
                                        name="email" value={props.email}
                                        onChange={props.handleValueChange} />                           
                             </div>
+                            { props.errors.email && (
+                                <div className="errorBox">{props.errors.email}</div>
+                            )}
 
                             <div className="input-group form-group">  
-                                <label for="firstName" class="col-md-4 control-label">First Name</label>                            
+                                <label htmlFor="firstName" className="col-md-4 control-label">First Name</label>                            
                                 <input type="text" className="form-control" placeholder="first name" 
                                        name="firstName" value={props.firstName}
                                        onChange={props.handleValueChange} />                           
                             </div>
 
                             <div className="input-group form-group">  
-                                <label for="lastName" class="col-md-4 control-label">Last Name</label>                            
+                                <label htmlFor="lastName" className="col-md-4 control-label">Last Name</label>                            
                                 <input type="text" className="form-control" placeholder="last name" 
                                        name="lastName" value={props.lastName}
                                        onChange={props.handleValueChange} />                           
                             </div>
 
                             <div className="input-group form-group">  
-                                <label for="lastName" class="col-md-4 control-label">Password</label>                               
+                                <label htmlFor="password" className="col-md-4 control-label">Password</label>                               
                                 <input type="password" className="form-control" placeholder="password"
                                        name ="password" value = {props.password} 
                                        onChange={props.handleValueChange} />
                             </div>
 
                             <div className="input-group form-group">  
-                                <label for="inviteCode" class="col-md-4 control-label">Invite Code</label>                               
+                                <label htmlFor="inviteCode" className="col-md-4 control-label">Invite Code</label>                               
                                 <input type="text" className="form-control" placeholder="invite code"
                                        name ="inviteCode" value = {props.inviteCode} 
                                        onChange={props.handleValueChange} />
@@ -51,13 +55,13 @@ function SignupForm(props) {
                           
                             <div className="form-group">
                                 <button type="submit" value="Signup" className="btn btn-primary float-right signup_btn"
-                                        onClick = {props.handleSingupSubmit}>Sign up </button>
+                                        onClick = {props.handleSignupSubmit}>Sign up </button>
                             </div>
                         </form>
                     </div>
                     <div className="card-footer">
                         <div className="d-flex justify-content-center links">
-                            Already have an account?<a href="/login">Sign In</a>
+                           <span> Already have an account?</span><a href="/login">Sign In</a>
                         </div>                      
                     </div>
                 </div>

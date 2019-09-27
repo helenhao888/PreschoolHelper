@@ -13,7 +13,7 @@ const styles = {
 
 function LoginForm(props) {
     return (
-    <div className="login-container">
+    <div className="loginForm-container">
         <div className="d-flex justify-content-center h-100">
                 <div className="card">
                     <div className="card-header">
@@ -61,7 +61,7 @@ function LoginForm(props) {
                    
                     <div className="card-footer">
                         <div className="d-flex justify-content-center links">
-                            Don't have an account?<a href="/signup">Sign Up</a>
+                           <span> Don't have an account?</span><a href="/signup"> Sign Up</a>
                         </div>                      
                     </div>
                 </div>

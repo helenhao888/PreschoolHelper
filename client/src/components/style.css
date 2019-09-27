@@ -1,0 +1,20 @@
+.errorBox {
+    color: #cc0000;
+    font-size: 0.8rem;
+    font-weight: 400;
+    margin:0;
+    text-align:center;
+  }
+
+  .loginForm-containter{
+
+    margin-top:50px;
+  }
+
+  .card-footer{
+    color:white;
+  }
+
+  .card-footer span{
+    margin-right:10px;
+  }

@@ -4,6 +4,9 @@ import LoginForm from "../components/LoginForm";
 import API from "../utils/API";
 import authenticate from '../utils/Authentication';
 import setAuthToken from '../utils/setAuthtoken';
+import './style.css';
+
+
 
 class Login  extends Component {
 
@@ -77,17 +80,22 @@ class Login  extends Component {
             return <Redirect to="/dashboard" />
         }
 
-        return (
-               
+        return (               
             
-               <div className="container">
-                    <LoginForm email={email} 
-                               password={password} 
-                               handleValueChange ={this.handleValueChange} 
-                               handleSubmit = {this.handleSubmit}
-                               errors={errors} />
+            <div className="container-fluid login-page-container">
+                <div className="row">
+                    <div className="col-md-3 col-sm-12">
+                        <h2>PRESCHOOL HELPER</h2>
+                    </div>
+                    <div className="col-md-9 col-sm-12">
+                        <LoginForm email={email}
+                            password={password}
+                            handleValueChange={this.handleValueChange}
+                            handleSubmit={this.handleSubmit}
+                            errors={errors} />
+                    </div>
                 </div>
-         
+            </div>
         )  
     } 
       

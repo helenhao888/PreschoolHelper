@@ -44,7 +44,7 @@ module.exports = function (app) {
         }).then ( user =>{
             if(user){
                 res.status(400).json({
-                    "message":"That email is already taken"
+                    "email":"That email is already taken"
                 })
             }else {
 
@@ -174,7 +174,12 @@ module.exports = function (app) {
                         res.status(200).json(user);
                     }
                 })
-                .catch(err=> console.log(err));
+                .catch(err=> {
+                    console.log(err);
+                    return res.status(500).json({
+                        message:"get user info err "+err
+                    })
+                });
    })    
 
 //update user profile, includes last name and first name
@@ -229,7 +234,7 @@ module.exports = function (app) {
     })
 
     //change password
-    app.put("/api/profile/password",
+    app.put("/api/password",
         passport.authenticate("jwt",{session:false}),
         (req,res) =>{
           
@@ -280,7 +285,17 @@ module.exports = function (app) {
                                 })
                             })
 
-                        }})
+                        }else{
+                            //password not matched
+                             return res.status(400).json({
+                                currentPassword:"current password error"
+                                
+                            })
+
+                            
+
+                        }
+                    })
             }})   
             .catch(err=>
                 {
@@ -309,9 +324,9 @@ module.exports = function (app) {
     }
     ));
 
-    function isLoggedIn(req, res, next) {
-        if (req.isAuthenticated())
-            {return next();}
-        res.redirect("/");
-    }
+    // function isLoggedIn(req, res, next) {
+    //     if (req.isAuthenticated())
+    //         {return next();}
+    //     res.redirect("/");
+    // }
 };
