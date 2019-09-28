@@ -12,7 +12,8 @@ class Signup extends Component{
             password:"",
             firstName:"",
             lastName:"",
-            inviteCode:"",
+            studentfirstName:"",
+            studentLastName:"",
             errors:{},
             redirect:false
         };       
@@ -21,20 +22,22 @@ class Signup extends Component{
     handleValueChange = (event)=>{
         const {name,value} = event.target;
         this.setState({
-            [name]:value
+            [name]:value.trim()
         })
     };
 
     handleSignupSubmit = (event) => {
         event.preventDefault();
-        const {email,firstName,lastName,password} = this.state;
+        const {email,firstName,lastName,password,studentFirstName,studentLastName} = this.state;
 
         
         const signupData={
             email,
             firstName,
             lastName,
-            password
+            password,
+            studentFirstName,
+            studentLastName
         };
         
         API.signup(signupData)
@@ -59,7 +62,7 @@ class Signup extends Component{
 
    render(){
 
-    const {redirect,email,password,firstName,lastName,inviteCode,errors} = this.state;
+    const {redirect,email,password,firstName,lastName,studentFirstName,studentLastName,errors} = this.state;
 
     if (redirect){
         return <Redirect to="/login" />
@@ -76,7 +79,8 @@ class Signup extends Component{
                         password={password}
                         firstName={firstName}
                         lastName={lastName}
-                        inviteCode={inviteCode}
+                        studentFirstName={studentFirstName}
+                        studentLastName={studentLastName}
                         errors={errors}
                         handleValueChange={this.handleValueChange}
                         handleSignupSubmit={this.handleSignupSubmit} />

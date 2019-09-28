@@ -35,9 +35,55 @@ module.exports = function (app) {
     //user sign up
     app.post("/api/signup", (req,res)  =>{
          
-        const {email, password, firstName, lastName} = req.body;
-
+        const {email, password, firstName, lastName,studentLastName,studentFirstName} = req.body;
+        console.log("studentLast",studentLastName);
         //ADD validation here 
+        if(email===""||password==="" || firstName === "" ||
+           lastName === "" || studentFirstName==="" || studentLastName ===""){
+               return res.status(400).json({
+                   message:"please input all the information"
+               });
+           };
+
+
+        //check student table to make sure user has a valid student 
+       console.log("student name",studentFirstName,studentLastName);
+       
+        db.Student.findOne({
+            where :{firstName: studentFirstName,
+                    lastName : studentLastName }
+        }).then(student =>{
+            console.log("student",student);
+            if(student){
+                if(!((student.parent1FirstName.toLowerCase() === firstName.toLowerCase() 
+                   && student.parent1LastName.toLowerCase() === lastName.toLowerCase()) ||
+                    (student.parent2FirstName.toLowerCase() === firstName.toLowerCase()
+                     && student.parent2LastName.toLowerCase() === lastName.toLowerCase()))){
+                        return res.status(400).json({
+                            message:"You don't have a student in this school, please check"
+                        });
+                }else{
+                    let studentId=student.id;
+                    //creare user function with all parms
+                    console.log("student id",studentId);
+                    createUser(email,firstName,lastName,password,studentId,req,res);   
+                }
+            }else{
+                return res.status(400).json({
+                    message:"You don't have a student in this school, please check"
+                });
+            }
+        }).catch(err=>{
+            console.log("read student table err",err);
+        });
+
+
+                  
+    
+    }    
+    );
+
+    function createUser(email,firstName,lastName,password,studentId,req,res){
 
         db.User.findOne({
             where : {email}
@@ -48,11 +94,13 @@ module.exports = function (app) {
                 })
             }else {
 
+                
                 const newUser = {
                     email,
                     password,
                     firstName,
                     lastName,
+                    studentId,
                     accessLevel:"1"
                 };
                 
@@ -78,21 +126,21 @@ module.exports = function (app) {
                                     user: "user created with err " + err
                                 })
                             })
+                        })
                     })
-                })
-               
-
-            }
-
-        }).catch( err =>{
-            res.status(500).json({
-                "message":"db read err : "+err
-            })
-
-        })
+                   
     
-    }    
-    );
+                }
+    
+            }).catch( err =>{
+                res.status(500).json({
+                    "message":"db read err : "+err
+                })
+    
+            })
+    };
+
+
 
     // @route POST /login
     // @desc logs in a user , return JWT

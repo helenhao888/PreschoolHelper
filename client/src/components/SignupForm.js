@@ -47,10 +47,13 @@ function SignupForm(props) {
                             </div>
 
                             <div className="input-group form-group">  
-                                <label htmlFor="inviteCode" className="col-md-4 control-label">Invite Code</label>                               
-                                <input type="text" className="form-control" placeholder="invite code"
-                                       name ="inviteCode" value = {props.inviteCode} 
+                                <label htmlFor="studentName" className="col-md-4 control-label">Student Name</label>                               
+                                <input type="text" className="form-control" placeholder="first name"
+                                       name ="studentFirstName" value = {props.studentFirstName} 
                                        onChange={props.handleValueChange} />
+                                <input type="text" className="form-control" placeholder="last name"
+                                       name ="studentLastName" value = {props.studentLastName} 
+                                       onChange={props.handleValueChange} />       
                             </div>
                           
                             <div className="form-group">
@@ -58,6 +61,9 @@ function SignupForm(props) {
                                         onClick = {props.handleSignupSubmit}>Sign up </button>
                             </div>
                         </form>
+                        { props.errors.message && (
+                                <div className="errorBox">{props.errors.message}</div>
+                            )}
                     </div>
                     <div className="card-footer">
                         <div className="d-flex justify-content-center links">

@@ -23,6 +23,23 @@ export default {
         return axios.put("/api/profile",userData);
     },
 
+    addStudent:(studentData) => {
+        return axios.post("/api/student",studentData);
+    },
 
- 
+    getStudent:(id) =>{
+        
+        return axios.get("/api/student/"+id);
+    },
+
+    getAllStudents:() =>{
+        
+        return axios.get("/api/student/");
+    },
+    
+    deleteStudent:(id) => {
+        console.log("api delete id",id);
+        return axios.delete("/api/student/"+id );
+    }
+  
 };

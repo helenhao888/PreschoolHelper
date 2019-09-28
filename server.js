@@ -34,7 +34,8 @@ app.use(passport.initialize());
 // Routes
 // =============================================================
 const authRoute = require('./routes/api/auth.js')(app);
-//only app as parm , check 
+const studentRoute = require('./routes/api/student.js')(app);
+
 
 //Load passport strategies
 require('./config/passport.js')(passport);

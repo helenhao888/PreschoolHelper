@@ -34,7 +34,7 @@ class Navbar extends Component{
 
       <div>
         <nav className="navbar navbar-expand-lg navStyle">
-          <a className="brand-navbar" href="#"><img src="#" alt="Logo image" height="30px" /></a>
+          <span className="iconStyle">Preschool Helper</span>
           <button className="navbar-toggler" data-toggle="collapse" data-target="#mainMenu">
             <span><i className="fa fa-align-right iconStyle"></i></span>
           </button>
