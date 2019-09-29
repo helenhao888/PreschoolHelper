@@ -40,6 +40,11 @@ export default {
     deleteStudent:(id) => {
         console.log("api delete id",id);
         return axios.delete("/api/student/"+id );
+    },
+
+    updateStudent:(id,studentData)  => {
+        console.log("update student",id+studentData);
+        return axios.put("/api/student/"+id,studentData);
     }
   
 };

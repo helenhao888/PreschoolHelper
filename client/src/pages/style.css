@@ -22,3 +22,15 @@
 td i{
     margin:3px;
 }
+
+.add-btn{
+    background-color: aquamarine;
+    margin-left:20px;   
+}
+.add-btn i{
+    padding-right:10px;
+}
+
+h4{
+    color:purple;
+}

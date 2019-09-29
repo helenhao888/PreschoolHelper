@@ -88,7 +88,7 @@ class Profile extends Component{
     
     
     render(){
-        const {user,errors,firstName,lastName,message} = this.state;
+        const {user,firstName,lastName,message} = this.state;
 
         return (
             <div className="container">

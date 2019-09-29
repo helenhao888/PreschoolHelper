@@ -40,14 +40,30 @@ module.exports = function (app) {
 
     });
 
-    app.put("/api/student", (req,res)  =>{
+    app.put("/api/student/:id", passport.authenticate('jwt',{session:false}),
+            (req,res)=>{
 
-
-
+        db.Student.update(
+            req.body,
+            {where: {id:req.params.id}})
+            .then( student => {
+                if(student){
+                    res.status(200).json({
+                        student:"student updated successfully",
+                        studentUpdated: true
+                    });
+                }
+            })
+            .catch(err=> {
+                console.log(err);
+                return res.status(500).json({
+                    message:"update student info err "+err
+                })
+            });
     });
 
 
-    app.get("/api/student:id", passport.authenticate('jwt',{session:false}),
+    app.get("/api/student/:id", passport.authenticate('jwt',{session:false}),
         (req,res)=>{
             db.Student.findOne({where: {id:req.params.id}})
                 .then( student => {

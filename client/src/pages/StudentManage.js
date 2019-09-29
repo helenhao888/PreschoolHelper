@@ -4,6 +4,7 @@ import setAuthToken from '../utils/setAuthtoken';
 import Navbar from '../components/Navbar';
 import API from '../utils/API';
 import AddStudentForm from '../components/AddStudentForm';
+import UpdateStudentForm from '../components/UpdateStudentForm';
 
 class StudentManage  extends Component {
 
@@ -21,7 +22,9 @@ class StudentManage  extends Component {
             parent1LastName:"",
             parent2FirstName:"",
             parent2LastName:"",
-            classId:""
+            classId:"",
+            action:"",
+            studentId:0
         }
     };
 
@@ -65,6 +68,24 @@ class StudentManage  extends Component {
 
     updateStudent=(id)=>{
         console.log("update",id);
+        this.setState({action:"update"});
+
+        API.getStudent(id)
+           .then(res=>{
+               console.log("get student res",res.data);
+       
+            this.setState({firstName:res.data.firstName,
+                           lastName:res.data.firstName,
+                            parent1FirstName:res.data.parent1FirstName,
+                            parent1LastName:res.data.parent1LastName,
+                            parent2FirstName:res.data.parent2FirstName,
+                            parent2LastName:res.data.parent2LastName,
+                            classId: res.data.classId,
+                            studentId: id})
+           })
+           .catch(err=>{
+               console.log("get student by id fails with err",err);
+           })
     }
 
 
@@ -102,6 +123,12 @@ class StudentManage  extends Component {
         })
     };
 
+    // handleSelectChange=(event)=>{
+    //       this.setState({
+    //           classId:event.target.value
+    //       })
+    // }
+
     handleSubmit = (event) => {
         event.preventDefault();
 
@@ -121,7 +148,7 @@ class StudentManage  extends Component {
             });
 
         const {firstName,lastName,parent1FirstName,parent1LastName,
-                  parent2FirstName,parent2LastName,classId} = this.state;
+                  parent2FirstName,parent2LastName,classId,studentId} = this.state;
 
         const studentData={
             firstName,
@@ -143,30 +170,51 @@ class StudentManage  extends Component {
                })
            }else{
 
-     
-                API.addStudent(studentData)
-                .then((res)=>{
-                    console.log("res",res);
-                    this.setState({
-                        studentUpdated: res.data.studentUpdated,
-                        message: res.data.student
-                    
-                        });
-                    this.getStudents();    
-                })          
-                .catch( err=>{
-                    console.log("add student err",err);
-                    this.setState({
-                        errors:err.response.data
+               if(this.state.action==="add"){     
+                    API.addStudent(studentData)
+                    .then((res)=>{
+                        console.log("res",res);
+                        this.setState({
+                            studentUpdated: res.data.studentUpdated,
+                            message: res.data.student
+                        
+                            });
+                        this.getStudents();    
+                    })          
+                    .catch( err=>{
+                        console.log("add student err",err);
+                        this.setState({
+                            errors:err.response.data
+                        })
                     })
-                })
+               }
+               console.log("action",this.state.action)
+               if(this.state.action==="update"){
+                    console.log("update stu");
+                    API.updateStudent(studentId,studentData)
+                    .then((res)=>{
+                        console.log("res",res);
+                        this.setState({
+                            studentUpdated: res.data.studentUpdated,
+                            message: res.data.student
+                        
+                            });
+                        this.getStudents();    
+                    })          
+                    .catch( err=>{
+                        console.log("update student err",err);
+                        this.setState({
+                            errors:err.response.data
+                        })
+                    })
+               }    
             }
     }
 
     render(){
 
         const {redirect,students,firstName,lastName,parent1FirstName,parent1LastName,
-                parent2LastName,parent2FirstName,classId,errors,message} = this.state;
+                parent2LastName,parent2FirstName,classId,errors,message,action} = this.state;
 
         if(redirect){
             return <Redirect to="/" />
@@ -176,7 +224,7 @@ class StudentManage  extends Component {
             
             <div className="container">
                 <Navbar />
-                <h1> StudentManage </h1>
+                <h4> Student Management </h4>
 
                 <table className="table">
                     <thead className="thead-dark">
@@ -197,8 +245,15 @@ class StudentManage  extends Component {
                    
                     </tbody>
                 </table>
-
-                <AddStudentForm firstName={firstName}
+                <div class="row">
+                    <button type="button" class="btn add-btn">
+                        <i class="fa fa-plus" aria-hidden="true"></i>                       
+                        Add Student</button>
+                </div>
+                {action === "add" ?
+                
+                 
+                (<AddStudentForm firstName={firstName}
                                 lastName ={lastName}
                                 parent1FirstName={parent1FirstName}
                                 parent1LastName={parent1LastName}
@@ -209,7 +264,20 @@ class StudentManage  extends Component {
                                 message={message}
                                 handleValueChange={this.handleValueChange}
                                 handleSubmit={this.handleSubmit}
-                />
+                />) :
+                (<UpdateStudentForm 
+                                firstName={firstName}  
+                                lastName ={lastName}
+                                parent1FirstName={parent1FirstName}
+                                parent1LastName={parent1LastName}
+                                parent2FirstName={parent2FirstName}
+                                parent2LastName={parent2LastName}   
+                                classId = {classId}         
+                                errors={errors}   
+                                message={message}
+                                handleValueChange={this.handleValueChange}
+                                handleSubmit={this.handleSubmit}/>)
+                }
 
                
             </div>
