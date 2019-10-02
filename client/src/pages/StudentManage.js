@@ -5,6 +5,9 @@ import Navbar from '../components/Navbar';
 import API from '../utils/API';
 import AddStudentForm from '../components/AddStudentForm';
 import UpdateStudentForm from '../components/UpdateStudentForm';
+// import PopupModal from '../components/PopupModal';
+// import Popup from "reactjs-popup";
+// import Modal from "../components/Modal";
 
 class StudentManage  extends Component {
 
@@ -28,7 +31,7 @@ class StudentManage  extends Component {
         }
     };
 
-    componentWillMount(){
+    componentDidMount(){
         const token = localStorage.getItem('preschool-app');
 
         if (token){
@@ -54,14 +57,17 @@ class StudentManage  extends Component {
 
 
     deleteStudent=(id)=>{
-        console.log("delete",id);
+
+        this.setState({
+            action:"delete"
+        })
        
         API.deleteStudent(id)
         .then(res=>{
             console.log("res",res.data);
             this.getStudents();
            
-            console.log("state student",this.state.students);
+            
         })
         .catch(err=> console.log(err));
     }
@@ -89,6 +95,10 @@ class StudentManage  extends Component {
     }
 
 
+    viewStudent=(id)=>{
+        console.log("view student")
+    }
+
     renderTableData(students){
 
         console.log("student in render",students)
@@ -104,8 +114,10 @@ class StudentManage  extends Component {
                 <td>{student.parent2LastName}</td>
                 <td>{student.classId}</td>
                 <td > 
-                     <a href="#"  onClick={()=>{this.deleteStudent(student.id)} } value={student.id}><i className="fa fa-trash-o" aria-hidden="true"></i></a>
-                     <a href="#"  onClick={()=>{this.updateStudent(student.id)} } value={student.id}><i className="fa fa-pencil" aria-hidden="true"></i></a>
+                
+                    <a href="#"  onClick={()=>{this.viewStudent(student.id)} } value={student.id}><i className="fa fa-eye" aria-hidden="true"></i></a>
+                    <a href="#"  onClick={()=>{this.deleteStudent(student.id)} } value={student.id}><i className="fa fa-trash-o" aria-hidden="true"></i></a>
+                    <a href="#"  onClick={()=>{this.updateStudent(student.id)} } value={student.id}><i className="fa fa-pencil" aria-hidden="true"></i></a>
                    
                 </td>    
             </tr>
@@ -123,11 +135,7 @@ class StudentManage  extends Component {
         })
     };
 
-    // handleSelectChange=(event)=>{
-    //       this.setState({
-    //           classId:event.target.value
-    //       })
-    // }
+  
 
     handleSubmit = (event) => {
         event.preventDefault();
@@ -211,10 +219,64 @@ class StudentManage  extends Component {
             }
     }
 
+    addStudentClick=(event)=>{
+        this.setState({
+            action:"add",
+            message: "",
+            errors:{},
+            firstName:"",
+            lastName:"",
+            parent1FirstName:"",
+            parent1LastName:"",
+            parent2FirstName:"",
+            parent2LastName:"",
+            classId:""
+        })
+    }
+
+    renderSwitch=()=>{
+
+        const {students,firstName,lastName,parent1FirstName,parent1LastName,
+            parent2LastName,parent2FirstName,classId,errors,message,action} = this.state;
+        switch(action){
+            case "add":
+                return  (<AddStudentForm firstName={firstName}
+                            lastName ={lastName}
+                            parent1FirstName={parent1FirstName}
+                            parent1LastName={parent1LastName}
+                            parent2FirstName={parent2FirstName}
+                            parent2LastName={parent2LastName}   
+                            classId = {classId}          
+                            errors={errors}   
+                            message={message}
+                            handleValueChange={this.handleValueChange}
+                            handleSubmit={this.handleSubmit}
+                        />) 
+
+            case "update":
+                    return (<UpdateStudentForm 
+                        firstName={firstName}  
+                        lastName ={lastName}
+                        parent1FirstName={parent1FirstName}
+                        parent1LastName={parent1LastName}
+                        parent2FirstName={parent2FirstName}
+                        parent2LastName={parent2LastName}   
+                        classId = {classId}         
+                        errors={errors}   
+                        message={message}
+                        handleValueChange={this.handleValueChange}
+                        handleSubmit={this.handleSubmit}/>)
+
+            default:
+                return null;
+        }
+    }
+
+
+    
     render(){
 
-        const {redirect,students,firstName,lastName,parent1FirstName,parent1LastName,
-                parent2LastName,parent2FirstName,classId,errors,message,action} = this.state;
+        const {redirect,students,errors,message} = this.state;
 
         if(redirect){
             return <Redirect to="/" />
@@ -246,42 +308,19 @@ class StudentManage  extends Component {
                     </tbody>
                 </table>
                 <div class="row">
-                    <button type="button" class="btn add-btn">
+                    <button type="button" class="btn add-btn"
+                        onClick={this.addStudentClick}>
                         <i class="fa fa-plus" aria-hidden="true"></i>                       
                         Add Student</button>
                 </div>
-                {action === "add" ?
-                
-                 
-                (<AddStudentForm firstName={firstName}
-                                lastName ={lastName}
-                                parent1FirstName={parent1FirstName}
-                                parent1LastName={parent1LastName}
-                                parent2FirstName={parent2FirstName}
-                                parent2LastName={parent2LastName}   
-                                classId = {classId}          
-                                errors={errors}   
-                                message={message}
-                                handleValueChange={this.handleValueChange}
-                                handleSubmit={this.handleSubmit}
-                />) :
-                (<UpdateStudentForm 
-                                firstName={firstName}  
-                                lastName ={lastName}
-                                parent1FirstName={parent1FirstName}
-                                parent1LastName={parent1LastName}
-                                parent2FirstName={parent2FirstName}
-                                parent2LastName={parent2LastName}   
-                                classId = {classId}         
-                                errors={errors}   
-                                message={message}
-                                handleValueChange={this.handleValueChange}
-                                handleSubmit={this.handleSubmit}/>)
-                }
-
+                {this.renderSwitch()}
+    
+    
+        
                
             </div>
         )
+
     } 
       
     

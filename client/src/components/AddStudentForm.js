@@ -61,6 +61,13 @@ function AddStudentForm(props) {
                      </select>
                  </div>
 
+                 {/* <div className="input-group form-group">
+                     <label htmlFor="studentPic" className="col-md-4 control-label">Student Picture</label>
+                     <input type="file" className="form-control" 
+                         name="studentPic" value={props.studentPic}
+                         onChange={props.handleValueChange} />
+                 </div>    */}
+
                  <div className="form-group">
                      <button type="submit" value="Add" className="btn btn-primary float-right " 
                          onClick={props.handleSubmit}>Add </button>

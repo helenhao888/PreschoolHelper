@@ -9,6 +9,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 import Profile from "./pages/Profile";
 import Security from "./pages/Security";
 import StudentManage from './pages/StudentManage';
+import Activities from './pages/Activities';
 
 
 
@@ -25,6 +26,7 @@ function App() {
           <PrivateRoute exact path="/profile" component={Profile} />
           <PrivateRoute exact path="/security" component={Security} />
           <PrivateRoute exact path="/student" component={StudentManage} />
+          <PrivateRoute exact path="/activity" component={Activities} />
           <Route component={NotMatch} />
           {/* `*` (get) - Will load your single HTML page in `client/build/index.html`. Make sure you have this _after_ all other routes are defined. */}
         </Switch>

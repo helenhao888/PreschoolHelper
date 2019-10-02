@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-function TeacherDashboard(props) {
+function TDashboard(props) {
     return (
       <div>
 
@@ -24,7 +24,9 @@ function TeacherDashboard(props) {
                 <a href="#"><div className="circle-tile-heading green"><i className="fa fa-tasks fa-fw fa-3x"></i></div></a>
                 <div className="circle-tile-content dark-green">
                   <div className="circle-tile-description text-faded"> Students Acitivities </div>
+                  <Link to="/activity">
                   <a className="circle-tile-footer" href="#">More Info<i className="fa fa-chevron-circle-right"></i></a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -34,4 +36,4 @@ function TeacherDashboard(props) {
     )
 }
 
-export default TeacherDashboard;
+export default TDashboard;

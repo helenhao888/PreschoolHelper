@@ -45,6 +45,19 @@ export default {
     updateStudent:(id,studentData)  => {
         console.log("update student",id+studentData);
         return axios.put("/api/student/"+id,studentData);
+    },
+    getAllActivities:() =>{
+        
+        return axios.get("/api/activity/");
+    },
+    addActivity:(activityData) => {
+        console.log("Add act ",activityData)
+        return axios.post("/api/activity",activityData);
+    },
+
+    delActivity:(id) => {
+        console.log("api delete id",id);
+        return axios.delete("/api/activity/"+id );
     }
   
 };

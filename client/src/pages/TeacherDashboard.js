@@ -4,7 +4,7 @@ import setAuthToken from '../utils/setAuthtoken';
 import axios from "axios";
 import Moment from 'react-moment';
 import Navbar from '../components/Navbar';
-import TeacherDashboard from '../components/TeacherDashboard';
+import TDashboard from '../components/TDashboard';
 
 class Dashboard  extends Component {
 
@@ -58,7 +58,7 @@ class Dashboard  extends Component {
                   <strong>Member since:{' '} 
                           <Moment date={user.createdAt} format="YYYY/MM/DD" /></strong> 
               </p>
-              <TeacherDashboard />
+              <TDashboard />
               
             </div>
         )
