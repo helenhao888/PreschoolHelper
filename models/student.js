@@ -38,8 +38,15 @@ module.exports = function (sequelize, DataTypes) {
             notEmpty: false
         }
     });
-   
-
+    Student.associate = function(models) {
+        // Post.belongsTo(models.Author, {
+        //   foreignKey: {
+        //     allowNull: false
+        //   }
+        // });
+        Student.belongsTo(models.Class, {foreignKey: "classId", targetKey: "classId"});
+      };
+  
 
     return Student;
 };

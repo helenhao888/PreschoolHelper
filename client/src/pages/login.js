@@ -5,6 +5,7 @@ import API from "../utils/API";
 import authenticate from '../utils/Authentication';
 import setAuthToken from '../utils/setAuthtoken';
 import './style.css';
+import { access } from 'fs';
 
 
 
@@ -16,13 +17,15 @@ class Login  extends Component {
             email:"",
             password:"",
             errors:{},
-            redirect:false
+            redirect:false,
+            accessLevel:""
         };       
     }
 
     componentDidMount(){
         const token = localStorage.getItem("preschool-app");
 
+        console.log("token",token)
         if(authenticate(token)){
             this.setState({
                 redirect:true
@@ -52,6 +55,7 @@ class Login  extends Component {
                if(res.data.token){
                   
                    const {token} = res.data;
+                   console.log("res data",res.data.accessLevel);
 
                    if(token){
                        localStorage.setItem("preschool-app",token);
@@ -59,7 +63,8 @@ class Login  extends Component {
 
                        this.setState({
                         errors:{},
-                        redirect:true
+                        redirect:true,
+                        accessLevel:res.data.accessLevel
                         });
                    }
                    
@@ -75,9 +80,15 @@ class Login  extends Component {
     }
 
     render(){
-        const {email, password, errors,redirect} = this.state;
+        const {email, password, errors,redirect,accessLevel} = this.state;
         if (redirect){
-            return <Redirect to="/dashboard" />
+           
+              if (accessLevel === "0"){
+                  return <Redirect to="/dashboard" />
+              }else{
+                  return <Redirect to="/dashboard/parent" />
+              }
+              
         }
 
         return (               

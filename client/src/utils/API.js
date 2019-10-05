@@ -23,6 +23,11 @@ export default {
         return axios.put("/api/profile",userData);
     },
 
+    getUser:()=>{
+        console.log("get user")
+        return axios.get("/api/user");
+    },
+
     addStudent:(studentData) => {
         return axios.post("/api/student",studentData);
     },
@@ -58,6 +63,11 @@ export default {
     delActivity:(id) => {
         console.log("api delete id",id);
         return axios.delete("/api/activity/"+id );
+    },
+
+    getReport:(id,date)=>{
+        console.log("get report"+date);
+        return axios.get("/api/report/"+date);
     }
   
 };

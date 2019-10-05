@@ -10,6 +10,7 @@ import Profile from "./pages/Profile";
 import Security from "./pages/Security";
 import StudentManage from './pages/StudentManage';
 import Activities from './pages/Activities';
+import ParentDashboard from './pages/ParentDashboard';
 
 
 
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/" component={Login} />
           <Route exact path="/login" component={Login} />
           <PrivateRoute exact path="/dashboard" component={TeacherDashboard} />
+          <PrivateRoute exact path="/dashboard/parent" component={ParentDashboard} />
           <Route exact path="/signup" component={Signup} />
           <PrivateRoute exact path="/profile" component={Profile} />
           <PrivateRoute exact path="/security" component={Security} />

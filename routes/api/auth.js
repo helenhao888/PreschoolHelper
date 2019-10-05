@@ -175,7 +175,9 @@ module.exports = function (app) {
                             id: currentUser.id,
                             email:currentUser.email,
                             firstName: currentUser.firstName,
-                            lastName:user.lastName
+                            lastName:user.lastName,
+                            accessLevel:user.accessLevel
+                            
                         }
 
                         console.log("payload",payload);

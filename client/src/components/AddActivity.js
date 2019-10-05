@@ -5,7 +5,7 @@ function AddActivity(props) {
         <div className="contianer">
             {/* <div className="col-md-6 offset-md-2"> */}
             <form>
-                <h5>Add Activity</h5>
+                <div className="title">Add Activity</div>
 
                 <div className="input-group form-group">
                     <label htmlFor="activityName" className="col-md-4 control-label">Activity Name</label>

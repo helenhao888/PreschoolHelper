@@ -9,8 +9,8 @@ import AddActivity from '../components/AddActivity';
 
 class Activities  extends Component {
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state ={
             redirect:false,
             activities:[],
@@ -43,7 +43,8 @@ class Activities  extends Component {
         const {value, name} = event.target;
 
         this.setState({
-            [name]:value
+            [name]:value,
+            message:""
         })
     };
 
@@ -58,7 +59,7 @@ class Activities  extends Component {
             errors:{},           
             action:"add"
             });
-            console.log("before add action",this.state.action)
+            
         const { activityName,activityDate,activityTime,description,classId} = this.state;
 
         const activityData={
@@ -127,7 +128,7 @@ class Activities  extends Component {
 
     renderActivityData(){
 
-        const {activities,activityName, activityDate,activityTime,classId,description} = this.state;
+        const {activities} = this.state;
         console.log("activites in render",activities)
        return activities.map((activity,index)=>{
            return( <ActivityList 
@@ -169,11 +170,12 @@ class Activities  extends Component {
                 <Navbar />
                 <h4> Activities </h4>
                 <div className="row">
-                    <div className="col-md-8">
+                    <div className="col-md-6">
+                        
                         {this.renderActivityData()}
                        
                     </div>
-                    <div className="col-md-4" >
+                    <div className="col-md-6" >
                          <AddActivity 
                           activityName={activityName}
                           activityDate={activityDate}

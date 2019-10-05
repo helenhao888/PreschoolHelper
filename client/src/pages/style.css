@@ -34,3 +34,21 @@ td i{
 h4{
     color:purple;
 }
+
+.card-img-top{
+   background-image: url("/image/reportHeader.jpg");
+   height:100px;
+}
+
+.card-img-top h5{
+    text-align: center;
+    /* padding-top:20px; */
+    color:darkorange;
+    font-weight:bold;
+}
+
+.card-img-top span{
+    text-align: right;
+    color:darkslateblue;
+    font-weight:bold;
+}

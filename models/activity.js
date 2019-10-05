@@ -8,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
             primaryKey: true
         },
         activityDate: {
-            type: DataTypes.DATE,
+            type: DataTypes.DATEONLY,
             allowNull: false,
             primaryKey: true
         },
