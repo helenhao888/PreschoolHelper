@@ -48,7 +48,14 @@ function AddStudentForm(props) {
                      <input type="text" className="form-control" placeholder="last name"
                          name="parent2LastName" value={props.parent2LastName}
                          onChange={props.handleValueChange} />
-                 </div>                  
+                 </div>    
+
+                  <div className="input-group form-group">
+                     <label htmlFor="studentPhoto" className="col-md-4 control-label">Student Photo</label>
+                     <input type="file" className="form-control" 
+                         name="studentPhoto" value={props.studentPhoto}
+                         onChange={props.handleValueChange} />
+                 </div>                 
 
                  <div className="input-group form-group">
                      <label htmlFor="classId" className="col-md-4 control-label">Class Id</label>

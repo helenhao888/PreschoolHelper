@@ -78,7 +78,12 @@ module.exports = function (app) {
     // app.get all
     app.get("/api/activity", passport.authenticate('jwt',{session:false}),
     (req,res)=>{
-        db.Activity.findAll({})
+        db.Activity.findAll({
+            order:[
+                ['activityDate','DESC'],
+                ['activityTime','DESC']
+            ]
+        })
             .then( activity => {
                 if(activity){
                     res.status(200).json(activity);

@@ -25,6 +25,7 @@ class StudentManage  extends Component {
             parent1LastName:"",
             parent2FirstName:"",
             parent2LastName:"",
+            studentPhoto:"",
             classId:"",
             action:"",
             studentId:0
@@ -152,12 +153,17 @@ class StudentManage  extends Component {
             parent1LastName:"",
             parent2FirstName:"",
             parent2LastName:"",
+            studentPhoto:"",
             classId:""
             });
 
         const {firstName,lastName,parent1FirstName,parent1LastName,
-                  parent2FirstName,parent2LastName,classId,studentId} = this.state;
+                  parent2FirstName,parent2LastName,classId,studentId,studentPhoto} = this.state;
 
+        let studentPhotoPath=studentPhoto.split('\\');
+        console.log("studentPhotpath",studentPhotoPath);
+        console.log("file name",studentPhotoPath[studentPhotoPath.length-1]
+        )         
         const studentData={
             firstName,
             lastName,
@@ -165,8 +171,11 @@ class StudentManage  extends Component {
             parent1LastName,
             parent2FirstName,
             parent2LastName,
+            studentPhoto,
             classId
         };
+
+        console.log("student data",studentData)
 
         if(firstName === "" || lastName==="" || parent1FirstName ==="" ||
            parent1LastName ===""|| classId===""){
