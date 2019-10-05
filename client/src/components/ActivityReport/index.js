@@ -5,7 +5,6 @@ import './style.css'
 
 function ActivityReport(props) {
     return (
-        
         <div className="activity-feed" key={props.index}>     
  
              <div className="row ">
@@ -31,6 +30,7 @@ function ActivityReport(props) {
                      </div>
                  </div>
             </div>
+           
 
 
         </div>

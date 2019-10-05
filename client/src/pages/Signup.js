@@ -60,6 +60,11 @@ class Signup extends Component{
            })
     }
 
+
+    handleGoogleSignup=()=>{
+        console.log("google signup")
+    }
+
    render(){
 
     const {redirect,email,password,firstName,lastName,studentFirstName,studentLastName,errors} = this.state;
@@ -83,7 +88,8 @@ class Signup extends Component{
                         studentLastName={studentLastName}
                         errors={errors}
                         handleValueChange={this.handleValueChange}
-                        handleSignupSubmit={this.handleSignupSubmit} />
+                        handleSignupSubmit={this.handleSignupSubmit}
+                        handleGoogleSignup={this.handleGoogleSignup} />
                 </div>
             </div>           
         </div>

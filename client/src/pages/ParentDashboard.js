@@ -168,7 +168,7 @@ class Dashboard  extends Component {
                                    
                                     {this.renderActivities()}
                                 </div>
-                                <a href="#" className="btn btn-sm btn-info float-right">Read more <i className="fa fa-angle-double-right"></i></a>
+                        
                             </div>
                         </div>
                     </div>
