@@ -316,10 +316,10 @@ class StudentManage  extends Component {
                    
                     </tbody>
                 </table>
-                <div class="row">
-                    <button type="button" class="btn add-btn"
+                <div className="row">
+                    <button type="button" className="btn add-btn"
                         onClick={this.addStudentClick}>
-                        <i class="fa fa-plus" aria-hidden="true"></i>                       
+                        <i className="fa fa-plus" aria-hidden="true"></i>                       
                         Add Student</button>
                 </div>
                 {this.renderSwitch()}

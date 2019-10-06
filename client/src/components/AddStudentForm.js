@@ -1,4 +1,5 @@
 import React from 'react';
+import UploadImage from './UploadImage';
 
 function AddStudentForm(props) {
     return (
@@ -55,7 +56,8 @@ function AddStudentForm(props) {
                      <input type="file" className="form-control" 
                          name="studentPhoto" value={props.studentPhoto}
                          onChange={props.handleValueChange} />
-                 </div>                 
+                 </div>    
+                 <UploadImage />             
 
                  <div className="input-group form-group">
                      <label htmlFor="classId" className="col-md-4 control-label">Class Id</label>

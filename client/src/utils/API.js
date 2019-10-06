@@ -68,6 +68,11 @@ export default {
     getReport:(id,date)=>{
         console.log("get report"+date);
         return axios.get("/api/report/"+date);
+    },
+
+    uploadFile:(file) =>{
+        console.log("update file",file);
+        return axios.post("/upload/",file);
     }
   
 };

@@ -2,8 +2,24 @@ const db = require("../../models");
 const keys = require("../../config/keys");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
+const path = require("path");
+const multer = require("multer");
 
 module.exports = function (app) {
+
+    const storage = multer.diskStorage({
+        destination: "./public/uploads/",
+        filename: function(req, file, cb){
+           cb(null,"IMAGE-" + Date.now() + path.extname(file.originalname));
+        }
+      });
+      
+      const upload = multer({
+        storage: storage,
+        limits:{fileSize: 1000000},
+      }).single("myImage");
+
+    //   var upload = multer({ dest: 'uploads/' })
 
 
     app.post("/api/student", (req,res)  =>{
@@ -117,7 +133,32 @@ app.delete("/api/student/:id", passport.authenticate('jwt',{session:false}),
         });
 
     });
+    //  
+    // app.post('/upload',upload.single('avatar'), function (req, res, next) {
+    //     // console.log("post upload",req.file)
+    //     res.send(req.file);
 
+    // });
 
+    // app.post("/upload", function (req,res){
+    //     console.log("post upload",req.body)
+    //     upload(req, res, function(err)  {
+    //        console.log("Request ---", req.body);
+    //        console.log("Request file ---", req.file);//Here you get file.
+    //        /*Now do where ever you want to do*/
+    //        if(!err)
+    //           return res.send(200).end();
+    //     });
+    //  });
+
+    app.post("/upload",  upload,(req, res, err) => {
+           console.log("Request ---", req.body);
+           console.log("Request file ---", req.file);//Here you get file.
+           /*Now do where ever you want to do*/
+           res.send(req.file);
+           if(!err)
+              return res.send(200).end();
+        });
+     
 
 };
