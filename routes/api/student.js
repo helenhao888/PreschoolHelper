@@ -12,7 +12,7 @@ module.exports = function (app) {
     app.post("/api/student", (req,res)  =>{
 
        const {firstName,lastName, parent1FirstName,parent1LastName,
-              parent2FirstName,parent2LastName,classId} = req.body;
+              parent2FirstName,parent2LastName,studentPhoto,classId} = req.body;
 
         const newStudent = {
             firstName,
@@ -21,6 +21,7 @@ module.exports = function (app) {
             parent1LastName,
             parent2FirstName,
             parent2LastName,
+            studentPhoto,
             classId          
             
         };

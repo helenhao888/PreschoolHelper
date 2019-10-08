@@ -24,9 +24,11 @@ class UploadImage extends React.Component {
         };
         axios.post("/upload",formData,config)
             .then((response) => {
-                console.log("response data",response.data);
+                console.log("response data",response.data.path);
+                this.props.handleGetFileName(response.data.path);
                 alert("The file is successfully uploaded");
             }).catch((error) => {
+                console.log("upload file error ",error);
         });
     }
     onChange(e) {

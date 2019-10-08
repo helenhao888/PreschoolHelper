@@ -32,6 +32,11 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: true,
             notEmpty: false
         },
+        studentPhoto:{
+            type: DataTypes.STRING,
+            allowNull: true,
+            notEmpty: false
+        },    
         classId:{
             type: DataTypes.STRING,
             allowNull: true,

@@ -9,8 +9,8 @@ import UpdateStudentForm from '../components/UpdateStudentForm';
 
 class StudentManage  extends Component {
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state ={
             redirect:false,
             students:[],
@@ -158,10 +158,7 @@ class StudentManage  extends Component {
         const {firstName,lastName,parent1FirstName,parent1LastName,
                   parent2FirstName,parent2LastName,classId,studentId,studentPhoto} = this.state;
 
-        let studentPhotoPath=studentPhoto.split('\\');
-        console.log("studentPhotpath",studentPhotoPath);
-        console.log("file name",studentPhotoPath[studentPhotoPath.length-1]
-        )         
+              
         const studentData={
             firstName,
             lastName,
@@ -237,14 +234,15 @@ class StudentManage  extends Component {
             parent1LastName:"",
             parent2FirstName:"",
             parent2LastName:"",
+            studentPhoto:"",
             classId:""
         })
     }
 
     renderSwitch=()=>{
 
-        const {students,firstName,lastName,parent1FirstName,parent1LastName,
-            parent2LastName,parent2FirstName,classId,errors,message,action} = this.state;
+        const {firstName,lastName,parent1FirstName,parent1LastName,
+            parent2LastName,parent2FirstName,studentPhoto,classId,errors,message,action} = this.state;
         switch(action){
             case "add":
                 return  (<AddStudentForm firstName={firstName}
@@ -258,6 +256,7 @@ class StudentManage  extends Component {
                             message={message}
                             handleValueChange={this.handleValueChange}
                             handleSubmit={this.handleSubmit}
+                            handleGetFileName={this.handleGetFileName}
                         />) 
 
             case "update":
@@ -267,7 +266,8 @@ class StudentManage  extends Component {
                         parent1FirstName={parent1FirstName}
                         parent1LastName={parent1LastName}
                         parent2FirstName={parent2FirstName}
-                        parent2LastName={parent2LastName}   
+                        parent2LastName={parent2LastName}  
+                        studentPhoto={studentPhoto} 
                         classId = {classId}         
                         errors={errors}   
                         message={message}
@@ -280,10 +280,17 @@ class StudentManage  extends Component {
     }
 
 
+    handleGetFileName=(filePath)=>{
+        console.log("handle file name function",filePath)
+        this.setState({
+            studentPhoto:filePath
+        })
+    }
     
+
     render(){
 
-        const {redirect,students,errors,message} = this.state;
+        const {redirect,students} = this.state;
 
         if(redirect){
             return <Redirect to="/" />
