@@ -50,6 +50,7 @@ function UpdateStudentForm(props) {
                          onChange={props.handleValueChange} />
                  </div>                  
 
+                 <UploadImage {...props}/>   
                  <div className="input-group form-group">
                      <label htmlFor="classId" className="col-md-4 control-label">Class Id</label>
                      <select className="form-control" id="classId"
