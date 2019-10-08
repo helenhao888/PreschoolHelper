@@ -9,10 +9,11 @@ class UploadImage extends React.Component {
         this.state ={
             file: null
         };
-        this.onFormSubmit = this.onFormSubmit.bind(this);
+        this.onUploadClick = this.onUploadClick.bind(this);
         this.onChange = this.onChange.bind(this);
     }
-    onFormSubmit(e){
+
+    onUploadClick (e){
         e.preventDefault();
         const formData = new FormData();
         formData.append('myImage',this.state.file);
@@ -23,6 +24,7 @@ class UploadImage extends React.Component {
         };
         axios.post("/upload",formData,config)
             .then((response) => {
+                console.log("response data",response.data);
                 alert("The file is successfully uploaded");
             }).catch((error) => {
         });
@@ -33,11 +35,13 @@ class UploadImage extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.onFormSubmit}>
-                <h1>File Upload</h1>
+           
+            <div className="input-group form-group">
+                <label htmlFor="myImage" className="col-md-4 control-label">Student Photo</label>
                 <input type="file" name="myImage" onChange= {this.onChange} />
-                <button type="submit">Upload</button>
-            </form>
+                <button type="submit" onClick={this.onUploadClick}>Upload</button>
+            </div>   
+         
         )
     }
 }

@@ -5,9 +5,7 @@ import Navbar from '../components/Navbar';
 import API from '../utils/API';
 import AddStudentForm from '../components/AddStudentForm';
 import UpdateStudentForm from '../components/UpdateStudentForm';
-// import PopupModal from '../components/PopupModal';
-// import Popup from "reactjs-popup";
-// import Modal from "../components/Modal";
+
 
 class StudentManage  extends Component {
 

@@ -39,6 +39,7 @@ const authRoute = require('./routes/api/auth.js')(app);
 const studentRoute = require('./routes/api/student.js')(app);
 const activityRoute = require('./routes/api/activityRoute.js')(app);
 const reportRoute = require('./routes/api/report.js')(app);
+const fileRoute = require('./routes/api/file.js')(app);
 
 //Load passport strategies
 require('./config/passport.js')(passport);

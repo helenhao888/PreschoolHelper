@@ -4,7 +4,7 @@ import UploadImage from './UploadImage';
 function AddStudentForm(props) {
     return (
         <div className="row">
-            <div className="col-md-6 offset-md-2">
+            <div className="col-md-7 offset-md-1">
             <form>
                 <h4>Add Student</h4>
 
@@ -50,13 +50,7 @@ function AddStudentForm(props) {
                          name="parent2LastName" value={props.parent2LastName}
                          onChange={props.handleValueChange} />
                  </div>    
-
-                  <div className="input-group form-group">
-                     <label htmlFor="studentPhoto" className="col-md-4 control-label">Student Photo</label>
-                     <input type="file" className="form-control" 
-                         name="studentPhoto" value={props.studentPhoto}
-                         onChange={props.handleValueChange} />
-                 </div>    
+                 
                  <UploadImage />             
 
                  <div className="input-group form-group">
@@ -70,12 +64,7 @@ function AddStudentForm(props) {
                      </select>
                  </div>
 
-                 {/* <div className="input-group form-group">
-                     <label htmlFor="studentPic" className="col-md-4 control-label">Student Picture</label>
-                     <input type="file" className="form-control" 
-                         name="studentPic" value={props.studentPic}
-                         onChange={props.handleValueChange} />
-                 </div>    */}
+                
 
                  <div className="form-group">
                      <button type="submit" value="Add" className="btn btn-primary float-right " 
