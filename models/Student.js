@@ -36,21 +36,17 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: true,
             notEmpty: false
-        },    
+        },
         classId:{
             type: DataTypes.STRING,
             allowNull: true,
             notEmpty: false
         }
     });
-    Student.associate = function(models) {
-        // Post.belongsTo(models.Author, {
-        //   foreignKey: {
-        //     allowNull: false
-        //   }
-        // });
-        Student.belongsTo(models.Class, {foreignKey: "classId", targetKey: "classId"});
-      };
+    // Student.associate = function(models) {
+      
+    //     Student.belongsTo(models.Class, {foreignKey: "classId", targetKey: "classId"});
+    //   };
   
 
     return Student;

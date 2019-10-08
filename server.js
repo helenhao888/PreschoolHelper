@@ -9,7 +9,7 @@ const express = require("express");
 // Sets up the Express App
 // =============================================================
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3001;
 const passport = require('passport');
 const session = require('express-session');
 const flash = require("connect-flash");
@@ -45,23 +45,25 @@ const fileRoute = require('./routes/api/file.js')(app);
 require('./config/passport.js')(passport);
 
 //Load passport google strategies
-require('./config/passport-oauth2.js')(passport, db.User);
+// require('./config/passport-oauth2.js')(passport, db.User);
 
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 
 
-db.sequelize.sync({}).then(() => {
+db.sequelize.sync({force:true}).then(() => {
 
   if(process.env.NODE_ENV === 'production'){
      app.use(express.static('client/build'));
 
-     app.get("*",(req,res) =>{
-       res.sendFile(
-       path.resolve(__dirname,'client','build','index.html')
-       );
-     })
+     console.log("first part");
+    //  app.get("*",(req,res) =>{
+      //  console.log("second part");
+      //  res.sendFile(
+      //  path.resolve(__dirname,'client','build','index.html')
+      //  );
+    //  })
   }
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);

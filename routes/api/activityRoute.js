@@ -18,7 +18,7 @@ module.exports = function (app) {
             classId   
         };
 
-        db.Activity.create(newActivity)
+        db.Activities.create(newActivity)
         .then(activity=>{
             console.log("activity",activity);
             res.status(200).json({
@@ -39,7 +39,7 @@ module.exports = function (app) {
     app.put("/api/Activity/:id", passport.authenticate('jwt',{session:false}),
             (req,res)=>{
 
-        db.Activity.update(
+        db.Activities.update(
             req.body,
             {where: {id:req.params.id}})
             .then( activity => {
@@ -61,7 +61,7 @@ module.exports = function (app) {
 
     app.get("/api/activity/:id", passport.authenticate('jwt',{session:false}),
         (req,res)=>{
-            db.Activity.findOne({where: {id:req.params.id}})
+            db.Activities.findOne({where: {id:req.params.id}})
                 .then( activity => {
                     if(activity){
                         res.status(200).json(activity);
@@ -78,7 +78,7 @@ module.exports = function (app) {
     // app.get all
     app.get("/api/activity", passport.authenticate('jwt',{session:false}),
     (req,res)=>{
-        db.Activity.findAll({
+        db.Activities.findAll({
             order:[
                 ['activityDate','DESC'],
                 ['activityTime','DESC']
@@ -101,7 +101,7 @@ app.delete("/api/activity/:id", passport.authenticate('jwt',{session:false}),
           (req,res)  =>{
 
         console.log("activity router id",req.params.id);
-        db.Activity.destroy({
+        db.Activities.destroy({
             where:{ id: req.params.id}
         })
         .then( activity => {

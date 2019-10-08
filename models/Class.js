@@ -1,13 +1,9 @@
-const Student = require("./student");
+// const Student = require("./Student");
 
 module.exports = function (sequelize, DataTypes) {
     var Class = sequelize.define("Class", {
 
-        // id: {
-        //     type: DataTypes.INTEGER,
-        //     autoIncrement: true,
-        //     primaryKey: true
-        // },       
+           
        
         classId:{
             type: DataTypes.STRING,
@@ -20,9 +16,9 @@ module.exports = function (sequelize, DataTypes) {
     });
    
    
-    Class.associate = function(models) {
-        Class.hasMany(models.Student,{foreignKey:"studentId"});      
+    // Class.associate = function(models) {
+    //     Class.hasMany(models.Student,{foreignKey:"studentId"});      
        
-      };
+    //   };
     return Class;
 };
