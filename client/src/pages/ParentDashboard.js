@@ -94,7 +94,7 @@ class Dashboard  extends Component {
              activityName={activity.activityName}
              activityDate={activity.activityDate}
              activityTime={activity.activityTime}
-             description ={activity.description}
+             description ={activity.description}            
              classId = {activity.classId}           
              index = {index}
              imageOption={imageOption}
@@ -158,8 +158,12 @@ class Dashboard  extends Component {
                         <div className="bg-light">
                           <div className="card-img-top">
                              <h5> Dialy Report </h5> 
-                             <span>{student.firstName}  {student.lastName}
-                                    <a href="#" className="float-right btn btn-sm btn-info d-inline-flex share"><i className="fa fa-share-alt"></i></a></span>
+                             <span>{student.firstName}  {student.lastName} 
+                                    {/* <a href="#" className="float-right btn btn-sm btn-info d-inline-flex share"><i className="fa fa-share-alt"></i></a> */}
+                                    <img src={process.env.PUBLIC_URL +student.studentPhoto} 
+                                  className="studentImg" alt="student" />
+                                    </span>
+                             
                             </div>
                             <div className="card-body">
                                 

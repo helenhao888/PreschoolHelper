@@ -9,7 +9,7 @@ const multer = require("multer");
 module.exports = function (app) {
 
 const storage = multer.diskStorage({
-    destination: "./uploads/images/",
+    destination: "client/public/image/",
     filename: function(req, file, cb){
        cb(null,"image-" + Date.now() + path.extname(file.originalname));
     }
