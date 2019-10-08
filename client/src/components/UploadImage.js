@@ -40,7 +40,7 @@ class UploadImage extends React.Component {
            
             <div className="input-group form-group">
                 <label htmlFor="myImage" className="col-md-4 control-label">Student Photo</label>
-                <input type="file" name="myImage" onChange= {this.onChange} />
+                <input type="file" name="myImage" onChange= {this.onChange} value={this.props.studentPhoto} />
                 <button type="submit" onClick={this.onUploadClick}>Upload</button>
             </div>   
          
