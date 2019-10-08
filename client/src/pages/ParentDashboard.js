@@ -160,7 +160,7 @@ class Dashboard  extends Component {
                              <h5> Dialy Report </h5> 
                              <span>{student.firstName}  {student.lastName} 
                                     {/* <a href="#" className="float-right btn btn-sm btn-info d-inline-flex share"><i className="fa fa-share-alt"></i></a> */}
-                                    <img src={process.env.PUBLIC_URL +student.studentPhoto} 
+                                    <img src={process.env.PUBLIC_URL +'/image/'+student.studentPhoto} 
                                   className="studentImg" alt="student" />
                                     </span>
                              

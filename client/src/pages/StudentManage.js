@@ -280,10 +280,11 @@ class StudentManage  extends Component {
     }
 
 
-    handleGetFileName=(filePath)=>{
-        console.log("handle file name function",filePath)
+    handleGetFileName=(fileName)=>{
+        console.log("handle file name function",fileName)
+        
         this.setState({
-            studentPhoto:filePath
+            studentPhoto:fileName
         })
     }
     
