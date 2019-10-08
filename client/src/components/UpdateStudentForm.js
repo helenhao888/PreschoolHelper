@@ -1,9 +1,10 @@
 import React from 'react';
+import UploadImage from './UploadImage';
 
 function UpdateStudentForm(props) {
     return (
         <div className="row">
-            <div className="col-md-6 offset-md-2">
+            <div className="col-md-7 offset-md-1">
             <form>
                 <h4>Update Student</h4>
 
