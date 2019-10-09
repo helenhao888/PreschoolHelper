@@ -113,7 +113,7 @@ class Activities  extends Component {
 
     
     getActivityList=()=>{
-        const date = new Date();
+        // const date = new Date();
         API.getAllActivities()
         .then(res=>{
             console.log("res get activites",res);

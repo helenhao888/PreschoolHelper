@@ -9,10 +9,10 @@ function SignupForm(props) {
                     <div className="card-header">
                         <h3>Sign Up</h3>
                         <hr />
-                        <div className="d-flex justify-content-end social_icon">                                  
+                        {/* <div className="d-flex justify-content-end social_icon">                                  
                             <span><i className="fa fa-google-plus-square" onClick={()=>{props.handleGoogleSignup()}}>  Sign Up with Google
                                   </i></span>                                   
-                        </div>
+                        </div> */}
                     </div>
                     <div className="card-body">
                         <form>

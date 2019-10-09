@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 const styles = {
     
@@ -19,9 +20,9 @@ function LoginForm(props) {
                     <div className="card-header">
                         <h3>Sign In</h3>
                         <hr />
-                        <div className="d-flex justify-content-end social_icon">                                  
+                        {/* <div className="d-flex justify-content-end social_icon">                                  
                             <span><i className="fa fa-google-plus-square">  Sign In with Google</i></span>                                   
-                        </div>
+                        </div> */}
                     </div>
                     <div className="card-body">
                         <form>
@@ -61,7 +62,8 @@ function LoginForm(props) {
                    
                     <div className="card-footer">
                         <div className="d-flex justify-content-center links">
-                           <span> Don't have an account?</span><a href="/signup"> Sign Up</a>
+                           <span> Don't have an account?</span><Link to="/signup"> Sign Up</Link>
+                           {/* <span> Don't have an account?</span><a href="/signup"> Sign Up</a> */}
                         </div>                      
                     </div>
                 </div>

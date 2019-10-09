@@ -121,7 +121,7 @@ class Dashboard  extends Component {
 
     render(){
 
-        const {redirect,user,student,date} = this.state;
+        const {redirect,user,student} = this.state;
 
         if(redirect){
             return <Redirect to="/" />
