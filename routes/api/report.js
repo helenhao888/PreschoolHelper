@@ -30,14 +30,15 @@ module.exports = function (app) {
                         });
                     })
                     .catch (err=>{
+                        console.log("server err",err)
                         return res.status(500).json({
-                            message:"get student report error "+err
+                            message:"get activity report error "+err
                         })
                     })
                 }
             })
             .catch(err=> {
-                console.log(err);
+                console.log("get stu err",err);
                 return res.status(500).json({
                     message:"get student info err "+err
                 })

@@ -70,7 +70,10 @@ class Dashboard  extends Component {
                console.log("student",res.data.student)
            
            })
-           .catch(err=> console.log(err));
+           .catch(err=> {
+               console.log("res message",err.response.data);  
+               console.log(err)
+            });
     }
    
     onChange = date => {
