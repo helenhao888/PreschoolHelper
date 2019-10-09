@@ -52,7 +52,7 @@ require('./config/passport.js')(passport);
 // =============================================================
 
 
-db.sequelize.sync({force:true}).then(() => {
+db.sequelize.sync({}).then(() => {
 
   if(process.env.NODE_ENV === 'production'){
      app.use(express.static('client/build'));

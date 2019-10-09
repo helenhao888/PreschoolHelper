@@ -1,5 +1,6 @@
 import React from 'react';
 import "./style.css";
+import {Link} from "react-router-dom";
 
 function SignupForm(props) {
     return (
@@ -68,7 +69,7 @@ function SignupForm(props) {
                     </div>
                     <div className="card-footer">
                         <div className="d-flex justify-content-center links">
-                           <span> Already have an account?</span><a href="/login">Sign In</a>
+                           <span> Already have an account?</span><Link to="/login">Sign In</Link>
                         </div>                      
                     </div>
                 </div>
