@@ -107,6 +107,7 @@ class StudentManage  extends Component {
                 <th scope="row">{index+1}</th>
                 <td>{student.firstName}</td>
                 <td>{student.lastName}</td>
+                <td><img className="thumbnail" src={process.env.PUBLIC_URL +'/image/'+student.studentPhoto} alt="student" /></td>
                 <td>{student.parent1FirstName}</td>
                 <td>{student.parent1LastName}</td>
                 <td>{student.parent2FirstName}</td>
@@ -309,6 +310,7 @@ class StudentManage  extends Component {
                             <th scope="col">#</th>
                             <th scope="col">First Name</th>
                             <th scope="col">Last Name</th>
+                            <th scope="col">Photo</th>
                             <th scope="col">Parent1 FName</th>
                             <th scope="col">Parent1 LName</th>
                             <th scope="col">Parent2 FName</th>
