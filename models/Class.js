@@ -16,9 +16,9 @@ module.exports = function (sequelize, DataTypes) {
     });
    
    
-    // Class.associate = function(models) {
-    //     Class.hasMany(models.Student,{foreignKey:"studentId"});      
+     Class.associate = function(models) {
+         Class.hasMany(models.Student,{foreignKey:"studentId"});      
        
-    //   };
+       };
     return Class;
 };

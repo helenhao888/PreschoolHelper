@@ -43,10 +43,10 @@ module.exports = function (sequelize, DataTypes) {
             notEmpty: false
         }
     });
-    // Student.associate = function(models) {
+     Student.associate = function(models) {
       
-    //     Student.belongsTo(models.Class, {foreignKey: "classId", targetKey: "classId"});
-    //   };
+         Student.belongsTo(models.Class, {foreignKey: "classId", targetKey: "classId"});
+       };
   
 
     return Student;
