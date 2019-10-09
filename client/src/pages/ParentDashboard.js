@@ -26,9 +26,9 @@ class Dashboard  extends Component {
     };
 
     componentDidMount(){
-        console.log("components mounted")
+       
         const token = localStorage.getItem('preschool-app');
-        console.log("token",token);
+       
         if (token){
             setAuthToken(token);
 
@@ -41,8 +41,7 @@ class Dashboard  extends Component {
                     studentId:res.data.studentId,
                     user:res.data
                 });
-                console.log("this state stid",this.state.studentId)
-                
+                               
                 
                 this.getStudentReport(currentDate);
             })
@@ -71,7 +70,7 @@ class Dashboard  extends Component {
            
            })
            .catch(err=> {
-               console.log("res message",err.response.data);  
+               console.log("res message",err.response);  
                console.log(err)
             });
     }

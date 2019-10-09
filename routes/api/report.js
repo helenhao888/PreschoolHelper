@@ -17,7 +17,7 @@ module.exports = function (app) {
                 if(student){
                     console.log("student class",student.classId);
                     
-                    db.Activity.findAll({
+                    db.Activities.findAll({
                         where:{
                             activityDate: date
                         }
