@@ -28,9 +28,11 @@ const db = require("./models");
 // Static directory
 app.use(express.static("public"));
 
+console.log("process.env.PUBLIC_URL",process.env.PUBLIC_URL)
 //For passport
 // app.use(session({ secret: keys.expSession.secret, resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
+
 // app.use(passport.session());
 
 // Routes
@@ -58,12 +60,12 @@ db.sequelize.sync({}).then(() => {
      app.use(express.static('client/build'));
 
      console.log("first part");
-    //  app.get("*",(req,res) =>{
-      //  console.log("second part");
-      //  res.sendFile(
-      //  path.resolve(__dirname,'client','build','index.html')
-      //  );
-    //  })
+     app.get("*",(req,res) =>{
+       console.log("second part");
+       res.sendFile(
+       path.resolve(__dirname,'client','build','index.html')
+       );
+     })
   }
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
