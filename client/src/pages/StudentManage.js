@@ -107,7 +107,7 @@ class StudentManage  extends Component {
                 <th scope="row">{index+1}</th>
                 <td>{student.firstName}</td>
                 <td>{student.lastName}</td>
-                <td><img className="thumbnail" src={process.env.PUBLIC_URL +'/image/'+student.studentPhoto} alt="student" /></td>
+                <td><img className="thumbnail" src={require("'../../public/image/'+student.studentPhoto")} alt="student" /></td>
                 <td>{student.parent1FirstName}</td>
                 <td>{student.parent1LastName}</td>
                 <td>{student.parent2FirstName}</td>
