@@ -60,6 +60,6 @@ typings/
 # dotenv environment variables file
 .env
 #keys
-config/keys.js
+
 # next.js build output
 .next
