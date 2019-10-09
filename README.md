@@ -1,6 +1,2 @@
-# User-Authentication
+# Preschool Helper
 
-
-"./uploads/:userId/:photoName"
-
-"./uploads/1234/file.jpg"
